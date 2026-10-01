@@ -73,3 +73,28 @@ orderForm.addEventListener('submit', (event) => {
   // Закрываем модальное окно.
   orderDialog.close();
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+  if (scrollToTopBtn) {
+    // Отслеживаем событие прокрутки страницы
+    window.addEventListener('scroll', () => {
+      // Если прокрутили больше 300px, показываем кнопку, иначе скрываем
+      if (window.scrollY > 300) {
+        scrollToTopBtn.removeAttribute('hidden');
+      } else {
+        scrollToTopBtn.setAttribute('hidden', '');
+      }
+    });
+
+    // Обработчик клика по кнопке
+    scrollToTopBtn.addEventListener('click', () => {
+      // Плавный скролл к самому верху страницы
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+});
