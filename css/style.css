@@ -217,6 +217,37 @@ a:focus-visible {
   grid-area: products;
 }
 
+.catalog-container {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start; 
+  padding: 20px;
+}
+
+.catalog-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.catalog-products {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.sticky-filter {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 20px;
+  max-height: calc(100vh - 40px); 
+  overflow-y: auto;
+  background: #ffffff;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+
 .filters-form {
   display: grid;
   gap: var(--space-md);

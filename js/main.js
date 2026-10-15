@@ -63,11 +63,12 @@ if (orderForm) {
   });
 }
 
-/* Кнопка Scroll-to-top */
+/* Кнопка «Наверх» (Scroll-to-top) */
 document.addEventListener('DOMContentLoaded', () => {
   const scrollToTopBtn = document.getElementById('scrollToTopBtn');
 
   if (scrollToTopBtn) {
+    // Показываем кнопку при прокрутке ниже 300px
     window.addEventListener('scroll', () => {
       if (window.scrollY > 300) {
         scrollToTopBtn.removeAttribute('hidden');
@@ -76,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    // Плавный скролл наверх при клике
     scrollToTopBtn.addEventListener('click', () => {
       window.scrollTo({
         top: 0,
@@ -84,4 +86,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
 
