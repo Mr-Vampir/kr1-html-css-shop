@@ -6,14 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Каталог товаров учебного интернет-магазина.">
   <title>Каталог товаров — Учебный интернет-магазин</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/main.js" defer></script>
+
 </head>
 
 <body>
-  <header>
-    <div class="site-header">
+  <header class="site-header">
+    <div class="site-header__container">
       <a class="site-logo" href="index.html">ShopProject</a>
-
       <nav class="site-nav" aria-label="Основная навигация">
         <ul class="site-nav__list">
           <li><a href="index.html">Главная</a></li>
@@ -24,6 +25,10 @@
           <li><a href="index.html#contacts">Обратная связь</a></li>
         </ul>
       </nav>
+
+    </div>
+    <div class="site-header__title-block">
+      <h1 class="site-header__title">Каталог — Учебный интернет-магазин</h1>
     </div>
   </header>
 
@@ -104,12 +109,16 @@
           </article>
         </div>
       </section>
+      </section>
   </main>
 
-  <footer>
+  <footer class="site-footer" id="contacts">
     <p>&copy; 2026 Учебный проект. Все права защищены.</p>
     <p>Дисциплина: Фронтенд и бэкенд разработка</p>
   </footer>
+    <button class="scroll-to-top" id="scrollToTopBtn" aria-label="Вернуться наверх" type="button" hidden>
+    &uarr;
+  </button>
 </body>
 
 </html>
