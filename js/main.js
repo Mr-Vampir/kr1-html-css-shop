@@ -105,4 +105,54 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+  const dialog = document.getElementById('order-dialog');
+  const form = document.getElementById('order-form');
+  const resetBtn = document.getElementById('reset-order-form');
+  const closeBtn = document.getElementById('close-order-dialog');
+  const successMessage = document.getElementById('success-message');
+
+  // 1. ЛОГИКА ОТПРАВКИ И КРАСНОЙ РАМКИ
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      // Проверяем валидность формы встроенными средствами HTML5
+      if (form.checkValidity()) {
+        // Если все ок: убираем красную рамку, прячем модалку, показываем успех
+        dialog.classList.remove('has-error');
+        if (typeof dialog.close === 'function') {
+          dialog.close();
+        }
+        successMessage.removeAttribute('hidden');
+        form.reset();
+      } else {
+        // Если есть пустые/неверные поля: красим рамку диалога в красный цвет
+        dialog.classList.add('has-error');
+        
+        // Подсвечиваем встроенные браузерные ошибки (опционально)
+        form.reportValidity(); 
+      }
+    });
+  }
+
+  // 2. ФУНКЦИЯ ОЧИСТКИ ВСЕХ ПОЛЕЙ
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      form.reset(); // Сбрасывает значения всех полей формы
+      dialog.classList.remove('has-error'); // Убирает красное окрашивание рамки
+    });
+  }
+
+  // 3. СБРОС СОСТОЯНИЯ ПРИ ЗАКРЫТИИ
+  if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+      if (typeof dialog.close === 'function') {
+        dialog.close();
+      }
+      form.reset();
+      dialog.classList.remove('has-error');
+    });
+  }
+});
 

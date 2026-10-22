@@ -483,6 +483,21 @@ a:focus-visible {
   font-weight: 500;
   border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
+
+/* Класс ошибки для модального окна */
+.order-dialog.has-error {
+  border: 2px solid var(--color-danger) !important;
+  box-shadow: 0 0 15px rgba(176, 0, 32, 0.3);
+  animation: shake 0.3s ease-in-out; /* Легкое потряхивание при ошибке */
+}
+
+/* Эффект потряхивания окна при ошибке (опционально) */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
 /* ==========================================================================
    6. КНОПКА "НАВЕРХ" (Повышенный уровень: position: fixed, z-index)
    ========================================================================== */
