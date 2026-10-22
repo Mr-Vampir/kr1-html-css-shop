@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Главная страница | ShopProject</title>
+  <meta name="description" content="Учебный интернет-магазин на HTML и CSS с использованием БЭМ, Flexbox и Grid." />
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/cart.js" defer></script>
+</head>
+
+<body>
+  <!-- Исправлено: Один семантический header, содержащий логотип и меню через Flexbox -->
+  <header class="site-header">
+    <div class="site-header__container">
+      <a class="site-logo" href="index.html">ShopProject</a>
+      <nav class="site-nav" aria-label="Основная навигация">
+        <ul class="site-nav__list">
+          <li><a href="main.html">Главная</a></li>
+          <li><a href="catalog.html">Каталог</a></li>
+          <li><a href="contacts.html">Контакты</a></li>
+          <li><a href="cart.html">Корзина</a></li>
+          <li><a href="main.html#advantages">Преимущества</a></li>
+          <li><a href="main.html#popular">Популярные товары</a></li>
+          <li><a href="main.html#contacts">Обратная связь</a></li>
+        </ul>
+      </nav>
+
+    </div>
+    <div class="site-header__title-block">
+      <h1 class="site-header__title">Учебный интернет-магазин</h1>
+    </div>
+  </header>
+
+  <main>
+  <section class="cart-tab">
+    <h1 class="site-header__title" style="text-align: left; margin-bottom: var(--space-md);">Ваша корзина</h1>
+    
+    <div class="cart-tab-content">
+      
+      <!-- СЕМЕНТ 1: Список товаров -->
+      <div class="cart-tab-products-list">
+        <!-- Сюда JavaScript будет рендерить элементы .cart-items__item -->
+        <ul class="cart-items__products" id="cart-container">
+          <!-- Если корзина пуста, JS выведет сообщение -->
+        </ul>
+      </div>
+
+      <!-- СЕГМЕНТ 2: Сайдбар расчета и форма покупателя -->
+      <aside class="cart-summary">
+        <h2 class="cart-summary__title">Оформление заявки</h2>
+        
+        <!-- Блок цен -->
+        <div class="cart-summary__row">
+          <span>Товары:</span>
+          <span id="summary-subtotal">0 ₽</span>
+        </div>
+        <div class="cart-summary__row">
+          <span>Доставка:</span>
+          <span style="color: var(--color-success);">Бесплатно</span>
+        </div>
+        <div class="cart-summary__row cart-summary__row--total">
+          <span>Итого к оплате:</span>
+          <span id="summary-total">0 ₽</span>
+        </div>
+
+        <!-- Перенесенная учебная форма -->
+        <form class="order-form" id="order-form" action="#" method="post" novalidate style="margin-top: var(--space-md); display: grid; gap: var(--space-sm);">
+          
+          <div class="form-field">
+            <label for="order-name" style="display:block; margin-bottom:4px; font-size:14px;">Имя</label>
+            <input id="order-name" name="name" type="text" placeholder="Введите ваше имя" minlength="2" required style="width:100%; padding:8px; border:1px solid var(--color-border); border-radius:var(--radius-sm);" />
+          </div>
+
+          <div class="form-field">
+            <label for="order-phone" style="display:block; margin-bottom:4px; font-size:14px;">Телефон</label>
+            <input id="order-phone" name="phone" type="tel" placeholder="+7 (900) 000-00-00" required style="width:100%; padding:8px; border:1px solid var(--color-border); border-radius:var(--radius-sm);" />
+          </div>
+
+          <div class="form-field form-field--checkbox" style="font-size: 13px; margin: var(--space-xs) 0;">
+            <label for="order-agreement">
+              <input id="order-agreement" name="agreement" type="checkbox" required />
+              Я согласен на обработку данных
+            </label>
+          </div>
+
+          <button class="button cart-summary__button" type="submit" id="submit-order">Отправить заявку</button>
+        </form>
+        
+        <p class="success-message" id="success-message" hidden style="color: var(--color-success); margin-top: var(--space-sm); font-weight: bold;">
+          Форма успешно отправлена!
+        </p>
+      </aside>
+
+    </div>
+  </section>
+  </main>
+
+  <footer class="site-footer" id="contacts">
+    <p>&copy; 2026 Учебный проект. Все права защищены.</p>
+    <p>Дисциплина: Фронтенд и бэкенд разработка</p>
+  </footer>
+
+  
+  <button class="scroll-to-top" id="scrollToTopBtn" aria-label="Вернуться наверх" type="button" hidden>
+    &uarr;
+  </button>
+</body>
+</html>

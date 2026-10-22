@@ -4,6 +4,13 @@ const orderButtons = document.querySelectorAll('.product-card__button');
 const closeDialogButton = document.getElementById('close-order-dialog');
 const selectedProductInput = document.getElementById('selected-product');
 
+function disableScroll() {
+  document.body.classList.add('no-scroll');
+}
+function enableScroll() {
+  document.body.classList.remove('no-scroll');
+}
+
 // Проверяем, есть ли модальное окно и кнопка закрытия на этой странице
 if (orderDialog && closeDialogButton) {
   // Перебираем все кнопки «Заказать» (если они есть)
@@ -14,12 +21,23 @@ if (orderDialog && closeDialogButton) {
         selectedProductInput.value = productName;
       }
       orderDialog.showModal();
+      disableScroll(); // БЛОКИРУЕМ СКРОЛЛ при открытии
     });
   });
 
   // Закрываем модальное окно по кнопке «Закрыть»
   closeDialogButton.addEventListener('click', () => {
     orderDialog.close();
+  });
+
+  // ВАЖНО: Отслеживаем закрытие dialog (через метод close, кнопку Esc или клик на оверлей)
+  orderDialog.addEventListener('close', () => {
+    enableScroll(); // ВОЗВРАЩАЕМ СКРОЛЛ при любом закрытии
+  });
+  orderDialog.addEventListener('click', (event) => {
+    if (event.target === orderDialog) {
+      orderDialog.close();
+    }
   });
 }
 
