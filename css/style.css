@@ -60,6 +60,10 @@ a {
   transition: color 0.2s ease;
 }
 
+body.no-scroll {
+  overflow: hidden;
+}
+
 a:hover {
   color: var(--color-primary-dark);
 }
@@ -215,6 +219,37 @@ a:focus-visible {
 
 .catalog-products {
   grid-area: products;
+}
+
+.catalog-container {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start; 
+  padding: 20px;
+}
+
+.catalog-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+}
+
+.catalog-products {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.sticky-filter {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 20px;
+  max-height: calc(100vh - 40px); 
+  overflow-y: auto;
+  background: #ffffff;
+  padding: 20px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
 }
 
 .filters-form {
@@ -538,4 +573,188 @@ html {
 .product-card .button {
   margin-top: auto;
   align-self: flex-start;
+}
+
+/* ==========================================================================
+   6. СТРАНИЦА КОРЗИНЫ
+   ========================================================================== */
+
+/* Основной контейнер корзины на странице */
+.cart-tab {
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-xl);
+  padding: 0 var(--space-lg);
+}
+
+/* Двухколоночная сетка: список товаров + блок оформления */
+.cart-tab-content {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: var(--space-lg);
+  align-items: flex-start;
+  margin-top: var(--space-md);
+}
+
+/* Левая колонка: Обертка для списка товаров */
+.cart-tab-products-list {
+  background-color: var(--color-bg);
+}
+
+/* Контейнер списка (БЭМ-блок для элементов) */
+.cart-items__products {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Отдельная карточка товара на странице корзины */
+.cart-items__item {
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+  padding: var(--space-md);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cart-items__item:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+/* --- Вспомогательные элементы карточки (изображение, инфо, кнопки) --- */
+.cart-items__img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.cart-items__info {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.cart-items__details {
+  flex-grow: 1;
+  max-width: 60%;
+}
+
+.cart-items__title {
+  margin: 0 0 var(--space-xs);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.cart-items__title a:hover {
+  color: var(--color-primary-dark);
+}
+
+/* Блок управления количеством (плюс/минус) */
+.cart-items__quantity {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.cart-items__qty-btn {
+  padding: var(--space-xs) var(--space-sm);
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.cart-items__qty-btn:hover {
+  background-color: var(--color-surface-accent);
+  border-color: var(--color-primary);
+}
+
+.cart-items__qty-input {
+  width: 45px;
+  text-align: center;
+  padding: var(--space-xs) 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font: inherit;
+}
+
+/* Цена за единицу или общая за позицию */
+.cart-items__price {
+  font-weight: bold;
+  font-size: 16px;
+  color: var(--color-text);
+  min-width: 90px;
+  text-align: right;
+}
+
+/* Кнопка удаления товара */
+.cart-items__delete-btn {
+  background: none;
+  border: none;
+  color: var(--color-muted);
+  cursor: pointer;
+  font-size: 18px;
+  padding: var(--space-xs);
+  transition: color 0.2s;
+}
+
+.cart-items__delete-btn:hover {
+  color: var(--color-danger);
+}
+
+/* Правая колонка: Блок оформления заказа (Сайдбар) */
+.cart-summary {
+  position: -webkit-sticky;
+  position: sticky;
+  top: calc(var(--space-lg) + 60px); /* Учитывает высоту sticky-шапки */
+  padding: var(--space-lg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.cart-summary__title {
+  margin: 0 0 var(--space-md);
+  font-size: 18px;
+  font-weight: bold;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--space-sm);
+}
+
+.cart-summary__row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--space-sm);
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+.cart-summary__row--total {
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.cart-summary__button {
+  width: 100%;
+  text-align: center;
+  margin-top: var(--space-md);
 }
